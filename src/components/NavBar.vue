@@ -16,7 +16,7 @@
     data () {
       return {
         count: 0,
-        messageNav: 'Click a button'
+        messageNav: 'Start clicking buttons'
       }
     },
     methods: {
