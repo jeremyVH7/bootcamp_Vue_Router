@@ -2,16 +2,15 @@
   <div id="nav-test">
     <img id="vue-logo" src="./logo.png">
       Heres a navbar and it's a component!!!
-    <button id="nav_btn1" type="button" class="btn btn-primary" v-on:click.prevent="button1">Button 1</button>
-    <button id="nav_btn2" type="button" class="btn btn-primary" v-on:click.prevent="button2">Button 2</button>
-    <button id="nav_btn3" type="button" class="btn btn-primary" v-on:click.prevent="button3">Button 3</button>
-    <button id="nav_btn4" type="button" class="btn btn-primary" v-on:click.prevent="button4">Button 4</button>
+    <slot></slot>
+
     <div id="messageDivNav">{{ messageNav }}</div>
   </div>
 </template>
 
 <script>
-  import {EventBus} from './EventBus.js'
+  import EventBus from './EventBus.js'
+  // import Button from './components/Button.vue'
   export default {
     data () {
       return {
