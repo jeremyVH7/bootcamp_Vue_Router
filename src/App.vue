@@ -2,7 +2,13 @@
   <div>
     <div id="app">
       <h1>{{ title }}</h1>
-      <NavBar></NavBar>
+      <NavBar>
+        <NavButton></NavButton>
+        <NavDropdown></NavDropdown>
+        <NavButton></NavButton>
+        <NavButton></NavButton>
+        <NavDropdown></NavDropdown>
+      </NavBar>
     </div>
     <div id="messageDiv">{{ message }}</div>
   </div>
@@ -10,11 +16,15 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
-import {EventBus} from './components/EventBus.js'
+import NavButton from './components/NavButton.vue'
+import NavDropdown from './components/NavDropdown.vue'
+import EventBus from './components/EventBus.js'
 export default {
   name: 'app',
   components: {
-    NavBar: NavBar
+    NavBar: NavBar,
+    NavButton: NavButton,
+    NavDropdown: NavDropdown
   },
   data () {
     return {
