@@ -3,22 +3,22 @@
     <div id="app">
       <h1>{{ title }}</h1>
       <NavBar>
-        <NavButton></NavButton>
-        <NavDropdown></NavDropdown>
-        <NavButton></NavButton>
-        <NavButton></NavButton>
-        <NavDropdown></NavDropdown>
+        <NavButton v-bind:buttonText="buttonText[0]"></NavButton>
+        <NavDropdown v-bind:dropdownItems="dropdownItems1"></NavDropdown>
+        <NavButton v-bind:buttonText="buttonText[1]"></NavButton>
+        <NavButton v-bind:buttonText="buttonText[2]"></NavButton>
+        <NavDropdown v-bind:dropdownItems="dropdownItems2"></NavDropdown>
       </NavBar>
+      <div id="messageDiv">{{ message }}</div>
     </div>
-    <div id="messageDiv">{{ message }}</div>
   </div>
 </template>
 
 <script>
+import {EventBus} from './components/EventBus.js'
 import NavBar from './components/NavBar.vue'
 import NavButton from './components/NavButton.vue'
 import NavDropdown from './components/NavDropdown.vue'
-import EventBus from './components/EventBus.js'
 export default {
   name: 'app',
   components: {
@@ -29,8 +29,28 @@ export default {
   data () {
     return {
       title: 'Navbar Component Demo',
-      message: ''
+      message: '',
+      dropdownItems1: ['dropdown1 item 1', 'dropdown1 item 2', 'dropdown1 item 3', 'dropdown1 item 4'],
+      dropdownItems2: ['dropdown2 item 1', 'dropdown2 item 2', 'dropdown2 item 3'],
+      buttonText: [
+        'Nav Button 1',
+        'Nav Button 2',
+        'Nav Button 3',
+        'Nav Button 4'
+      ]
     }
+  },
+  methods: {
+    buttonClicked: function(buttonMessage) {
+      this.message = buttonMessage;
+    },
+    dropdownChanged: function(dropMessage) {
+      this.message = dropMessage;
+    }
+  },
+  created: function () {
+    EventBus.$on('button-clicked', this.buttonClicked);
+    EventBus.$on('dropdown-changed', this.dropdownChanged);
   }
 }
 </script>
@@ -56,7 +76,7 @@ body {
 
 #messageDiv {
   width: 100%;
-  height: 200px;
+  height: 50px;
   color: white;
 }
 </style>

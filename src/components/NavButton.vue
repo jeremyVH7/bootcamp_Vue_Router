@@ -1,19 +1,20 @@
 <template>
-    <button type="button" class="btn btn-primary" v-on:click.prevent="button1">{{buttonText}}</button>
+    <button type="button" class="btn btn-primary" v-on:click.prevent="buttonClick">{{buttonText}}</button>
 </template>
 
 <script>
-  import EventBus from './EventBus.js'
+  import {EventBus} from './EventBus.js'
   export default {
     data () {
       return {
-        count: 0,
-        buttonText: 'Button Component'
+        buttonMessage: ''
       }
     },
+    props: ['buttonText'],
     methods: {
-      button1: function() {
-        alert('Button Component was just clicked!!');
+      buttonClick: function() {
+        this.buttonMessage = this.buttonText + ' was just clicked!';
+        EventBus.$emit('button-clicked', this.buttonMessage);
       }
     }
   }
