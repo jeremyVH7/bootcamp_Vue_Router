@@ -1,23 +1,23 @@
 <template>
   <select v-on:change="dropdownChange" style="color: black;">
     <option value="0" selected="selected">Make a Selection</option>
-    <option value="1">Selection 1</option>
-    <option value="2">Selection 2</option>
-    <option value="3">Selection 3</option>
+    <option v-for='(i, x) in dropdownItems' v-bind:value="i" v-text="i"></option>
   </select>
 </template>
 
 <script>
-  import EventBus from './EventBus.js'
+  import {EventBus} from './EventBus.js'
   export default {
     data () {
       return {
-        count: 0
+        dropMessage: ''
       }
     },
+    props: ['dropdownItems'],
     methods: {
-      dropdownChange: function() {
-        alert('Dropdown Component was just changed!!');
+      dropdownChange: function(i) {
+        this.dropMessage = i.currentTarget.value + ' was just selected!';
+        EventBus.$emit('dropdown-changed', this.dropMessage);
       }
     }
   }
