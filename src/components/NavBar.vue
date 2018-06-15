@@ -1,6 +1,6 @@
 <template>
   <div id="nav-demo">
-    <img id="vue-logo" src="./logo.png">
+    <img id="vue-logo" src="../assets/logo.png">
     <div id="NavTextDiv">{{ NavText }}</div>
     <slot></slot>
   </div>
