@@ -16,7 +16,15 @@
     props: ['dropdownItems'],
     methods: {
       dropdownChange: function(i) {
-        this.dropMessage = i.currentTarget.value + ' was just selected!';
+        //// Send some data after dropdown is changed
+        var selectedValue = i.currentTarget.value;
+        var selectedText = i.currentTarget.options[i.currentTarget.selectedIndex].text;
+
+        if (selectedValue != 0) {
+          this.dropMessage = selectedText + ' was just selected!';
+        } else {
+          this.dropMessage = '';
+        }
         EventBus.$emit('dropdown-changed', this.dropMessage);
       }
     }

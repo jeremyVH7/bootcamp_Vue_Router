@@ -13,6 +13,7 @@
     props: ['buttonText'],
     methods: {
       buttonClick: function() {
+        //// Send some data after button is clicked
         this.buttonMessage = this.buttonText + ' was just clicked!';
         EventBus.$emit('button-clicked', this.buttonMessage);
       }
