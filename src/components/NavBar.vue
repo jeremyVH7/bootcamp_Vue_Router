@@ -1,9 +1,8 @@
 <template>
   <div id="nav-demo">
     <img id="vue-logo" src="./logo.png">
-      Heres a navbar and it's a component!!!
+    <div id="NavTextDiv">{{ NavText }}</div>
     <slot></slot>
-    <div id="messageDivNav">{{ messageNav }}</div>
   </div>
 </template>
 
@@ -12,8 +11,7 @@
   export default {
     data () {
       return {
-        count: 0,
-        messageNav: ''
+        NavText: "Heres a navbar and it's filled with components!"
       }
     }
   }

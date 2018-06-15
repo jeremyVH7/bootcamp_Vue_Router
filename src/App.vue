@@ -42,9 +42,11 @@ export default {
   },
   methods: {
     buttonClicked: function(buttonMessage) {
+      ////// Do some action after button was clicked
       this.message = buttonMessage;
     },
     dropdownChanged: function(dropMessage) {
+      ////// Do some action after dropdown was selected
       this.message = dropMessage;
     }
   },
