@@ -3,11 +3,14 @@
     <div id="app">
       <h1>{{ title }}</h1>
       <NavBar>
-        <NavButton v-bind:buttonText="buttonText[0]"></NavButton>
-        <NavDropdown v-bind:dropdownItems="dropdownItems1"></NavDropdown>
-        <NavButton v-bind:buttonText="buttonText[1]"></NavButton>
-        <NavButton v-bind:buttonText="buttonText[2]"></NavButton>
-        <NavDropdown v-bind:dropdownItems="dropdownItems2"></NavDropdown>
+        <ul>
+          <li><NavButton v-bind:buttonText="buttonText[0]"></NavButton></li>
+          <li><NavDropdown v-bind:dropdownItems="dropdownItems1"></NavDropdown></li>
+          <li><NavButton v-bind:buttonText="buttonText[1]"></NavButton></li>
+          <li><NavButton v-bind:buttonText="buttonText[2]"></NavButton></li>
+          <li><NavDropdown v-bind:dropdownItems="dropdownItems2"></NavDropdown></li>
+          <li><NavSearch v-bind:searchText="searchText" v-bind:searchBtnText="searchBtnText"></NavSearch></li>
+        </ul>
       </NavBar>
       <div id="messageDiv">{{ message }}</div>
     </div>
@@ -19,12 +22,14 @@ import {EventBus} from './components/EventBus.js'
 import NavBar from './components/NavBar.vue'
 import NavButton from './components/NavButton.vue'
 import NavDropdown from './components/NavDropdown.vue'
+import NavSearch from './components/NavSearch.vue'
 export default {
   name: 'app',
   components: {
     NavBar: NavBar,
     NavButton: NavButton,
-    NavDropdown: NavDropdown
+    NavDropdown: NavDropdown,
+    NavSearch: NavSearch
   },
   data () {
     return {
@@ -37,13 +42,19 @@ export default {
         'Nav Button 2',
         'Nav Button 3',
         'Nav Button 4'
-      ]
+      ],
+      searchText: 'NavBar Search Component',
+      searchBtnText: 'Search'
     }
   },
   methods: {
     buttonClicked: function(buttonMessage) {
       ////// Do some action after button was clicked
       this.message = buttonMessage;
+    },
+    searchRan: function(searchMessage) {
+      ////// Do some action after button was clicked
+      this.message = searchMessage;
     },
     dropdownChanged: function(dropMessage) {
       ////// Do some action after dropdown was selected
@@ -53,6 +64,7 @@ export default {
   created: function () {
     EventBus.$on('button-clicked', this.buttonClicked);
     EventBus.$on('dropdown-changed', this.dropdownChanged);
+    EventBus.$on('search-run', this.searchRan);
   }
 }
 </script>
@@ -80,5 +92,11 @@ body {
   width: 100%;
   height: 50px;
   color: white;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  display: inline-block;
 }
 </style>
