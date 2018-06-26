@@ -2,7 +2,13 @@
   <div id="nav-demo">
     <img id="vue-logo" src="../assets/logo.png">
     <div id="NavTextDiv">{{ NavText }}</div>
-    <slot></slot>
+
+      <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <slot></slot>
+      </div>
+      <div class="col-xs-1"></div>
+
   </div>
 </template>
 
