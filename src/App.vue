@@ -4,15 +4,16 @@
       <h1>{{ title }}</h1>
       <NavBar>
         <ul>
+          <li><img id="vue-logo" src="./assets/logo.png"></li>
           <li><NavButton v-bind:buttonText="buttonText[0]"></NavButton></li>
           <li><NavDropdown v-bind:dropdownItems="dropdownItems1"></NavDropdown></li>
           <li><NavButton v-bind:buttonText="buttonText[1]"></NavButton></li>
           <li><NavButton v-bind:buttonText="buttonText[2]"></NavButton></li>
           <li><NavDropdown v-bind:dropdownItems="dropdownItems2"></NavDropdown></li>
           <li><NavSearch v-bind:searchText="searchText" v-bind:searchBtnText="searchBtnText"></NavSearch></li>
+          <li><div id="messageDiv">{{ message }}</div></li>
         </ul>
       </NavBar>
-      <div id="messageDiv">{{ message }}</div>
     </div>
   </div>
 </template>
@@ -34,7 +35,7 @@ export default {
   data () {
     return {
       title: 'Navbar Component Demo',
-      message: '',
+      message: 'Click stuff',
       dropdownItems1: ['dropdown1 item 1', 'dropdown1 item 2', 'dropdown1 item 3', 'dropdown1 item 4'],
       dropdownItems2: ['dropdown2 item 1', 'dropdown2 item 2', 'dropdown2 item 3'],
       buttonText: [
@@ -58,7 +59,11 @@ export default {
     },
     dropdownChanged: function(dropMessage) {
       ////// Do some action after dropdown was selected
-      this.message = dropMessage;
+      if (dropMessage != '') {
+        this.message = dropMessage;
+      } else {
+        this.message = 'Click stuff';
+      }
     }
   },
   created: function () {
@@ -74,7 +79,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: white;
   margin-top: 60px;
   background: #3A52C9;
@@ -82,6 +87,7 @@ export default {
 
 h1, h2 {
   font-weight: normal;
+  padding-left: 40px;
 }
 
 body {
