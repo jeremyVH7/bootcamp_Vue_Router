@@ -19,4 +19,7 @@
 #vue-logo {
   height: 50px;
 }
+#nav-demo {
+  background: #3A52C9;
+}
 </style>
