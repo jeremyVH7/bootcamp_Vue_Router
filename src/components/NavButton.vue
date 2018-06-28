@@ -1,5 +1,5 @@
 <template>
-    <button type="button" class="btn btn-primary" v-on:click.prevent="buttonClick">{{buttonText}}</button>
+    <router-link class="btn btn-primary NavButton" v-bind:to="routerTo" tag="button">{{buttonText}}</router-link>
 </template>
 
 <script>
@@ -10,17 +10,14 @@
         buttonMessage: ''
       }
     },
-    props: ['buttonText'],
+    props: ['buttonText', 'routerTo'],
     methods: {
-      buttonClick: function() {
-        //// Send some data after button is clicked
-        this.buttonMessage = this.buttonText + ' was just clicked!';
-        EventBus.$emit('button-clicked', this.buttonMessage);
-      }
     }
   }
 </script>
 
 <style>
-
+.NavButton {
+  min-width: 100px;
+}
 </style>
