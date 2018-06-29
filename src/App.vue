@@ -5,9 +5,7 @@
       <NavBar>
         <ul>
           <li><img id="vue-logo" src="./assets/logo.png"></li>
-          <li><NavButton v-bind:routerTo="buttonLinks[0][0]" v-bind:buttonText="buttonLinks[0][1]"></NavButton></li>
-          <li><NavButton v-bind:routerTo="buttonLinks[1][0]" v-bind:buttonText="buttonLinks[1][1]"></NavButton></li>
-          <li><NavButton v-bind:routerTo="buttonLinks[2][0]" v-bind:buttonText="buttonLinks[2][1]"></NavButton></li>
+          <li v-for='(link, i) in buttonLinks' :key='i'><NavButton v-bind:routerTo="link[0]" v-bind:buttonText="link[1]"></NavButton></li>
         </ul>
       </NavBar>
       <router-view/>
