@@ -37,8 +37,8 @@ export default {
       title: 'Vue Router Demo',
       buttonLinks: [
         ['/home', 'Home'],
-        ['/about', 'About'],
-        ['/error404', 'Error']
+        ['/about', 'About']
+        // ['/error404', 'Error']
       ]
     }
   },
