@@ -1,13 +1,19 @@
 <template>
   <div class="jumbotron text-center">
-    <h1>Home</h1>
-    <p>Here is a killer home page</p>
+    <h1>{{headerText}}</h1>
+    <p>{{pText}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data () {
+    return {
+      headerText: 'Home',
+      pText: 'Here is a killer home page'
+    }
+  }
 }
 </script>
 
