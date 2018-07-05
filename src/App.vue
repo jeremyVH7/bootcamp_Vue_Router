@@ -38,6 +38,7 @@ export default {
       buttonLinks: [
         ['/home', 'Home'],
         ['/about', 'About']
+
         // ['/error404', 'Error']
       ]
     }
