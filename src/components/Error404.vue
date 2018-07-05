@@ -1,13 +1,19 @@
 <template>
   <div class="jumbotron text-center">
-    <h1>404</h1>
-    <p>Error page</p>
+    <h1>{{headerText}}</h1>
+    <p>{{pText}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Error404'
+  name: 'Error404',
+  data () {
+    return {
+      headerText: '404',
+      pText: 'Error page'
+    }
+  }
 }
 </script>
 

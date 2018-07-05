@@ -4,7 +4,7 @@
       <h1>{{ title }}</h1>
       <NavBar>
         <ul>
-          <li><img id="vue-logo" src="./assets/logo.png"></li>
+          <li><router-link to="/"><img id="vue-logo" src="./assets/logo.png"></router-link></li>
           <li v-for='(link, i) in buttonLinks' :key='i'><NavButton v-bind:routerTo="link[0]" v-bind:buttonText="link[1]"></NavButton></li>
         </ul>
       </NavBar>
@@ -38,7 +38,7 @@ export default {
       buttonLinks: [
         ['/home', 'Home'],
         ['/about', 'About'],
-        ['/error404', '404']
+        ['/error404', 'Error']
       ]
     }
   },
@@ -74,5 +74,6 @@ ul {
 
 li {
   display: inline-block;
+  padding-right: 5px;
 }
 </style>

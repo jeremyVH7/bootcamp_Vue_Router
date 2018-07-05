@@ -1,13 +1,19 @@
 <template>
   <div class="jumbotron text-center">
-    <h1>About</h1>
-    <p>Here is some information. This is the about page</p>
+    <h1>{{headerText}}</h1>
+    <p>{{pText}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'About'
+  name: 'About',
+  data () {
+    return {
+      headerText: 'About',
+      pText: 'Here is some information. This is the about page'
+    }
+  }
 }
 </script>
 
