@@ -19,7 +19,12 @@ export default new Router({
       component: About
     },
     {
-      path: '/error404',
+      path: '',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '*',
       name: 'Error',
       component: Error404
     }
