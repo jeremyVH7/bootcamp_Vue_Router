@@ -9,6 +9,29 @@
         </ul>
       </NavBar>
       <router-view/>
+
+      <div id="nav-test"></div>
+      <div class='row'>
+        <div class="col-sm-10"></div>
+        <div class="col-sm-2">
+          <div class="row">
+            <div class='col-sm-4'></div>
+            <div class='col-sm-4 d-btn' id='d-u' v-on:click="moveUp"></div>
+            <div class='col-sm-4'></div>
+          </div>
+          <div class="row">
+            <div class='col-sm-4 d-btn' id='d-l' v-on:click="moveLeft"></div>
+            <div class='col-sm-4'></div>
+            <div class='col-sm-4 d-btn' id='d-r' v-on:click="moveRight"></div>
+          </div>
+          <div class="row">
+            <div class='col-sm-4'></div>
+            <div class='col-sm-4 d-btn' id='d-d' v-on:click="moveDown"></div>
+            <div class='col-sm-4'></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -22,6 +45,8 @@ import NavSearch from './components/NavSearch.vue'
 import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Error404 from './components/Error404.vue'
+
+import TweenMax from "gsap/TweenMax";
 
 export default {
   name: 'app',
@@ -44,7 +69,18 @@ export default {
     }
   },
   methods: {
-
+    moveUp: function() {
+      TweenMax.to("#nav-test", 5, {y:0});
+    },
+    moveDown: function() {
+      TweenMax.to("#nav-test", 15, {y:1000});
+    },
+    moveLeft: function() {
+      TweenMax.to("#nav-test", 5, {x:0});
+    },
+    moveRight: function() {
+      TweenMax.to("#nav-test", 5, {x:1000});
+    }
   },
   created: function () {
     // EventBus.$on('button-clicked', this.buttonClicked);
@@ -76,5 +112,11 @@ ul {
 li {
   display: inline-block;
   padding-right: 5px;
+}
+.d-btn {
+  background: blue;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
 }
 </style>

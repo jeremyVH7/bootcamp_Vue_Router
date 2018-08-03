@@ -22,4 +22,9 @@
 #nav-demo {
   background: #3A52C9;
 }
+#nav-test {
+  height: 100px;
+  width: 100px;
+  background: red;
+}
 </style>
