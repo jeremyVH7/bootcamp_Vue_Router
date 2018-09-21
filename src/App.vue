@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="app">
-      <h1>{{ title }}</h1>
+      <div class='row'><h1>{{ title }}</h1></div>
       <NavBar>
         <ul>
           <li><router-link to="/"><img id="vue-logo" src="./assets/logo.png"></router-link></li>
@@ -9,8 +9,8 @@
         </ul>
       </NavBar>
       <router-view/>
-
-      <div id="nav-test"></div>
+      <div class='col-sm-1 d-btn btn' id='d-u' v-on:click="move">Do Stuff</div>
+      <!-- <div id="nav-test"></div>
       <div class='row'>
         <div class="col-sm-10"></div>
         <div class="col-sm-2">
@@ -30,7 +30,7 @@
             <div class='col-sm-4'></div>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -46,7 +46,9 @@ import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Error404 from './components/Error404.vue'
 
+import jquery from "jquery/dist/jquery";
 import TweenMax from "gsap/TweenMax";
+import TimelineLite from "gsap/TimelineLite";
 
 export default {
   name: 'app',
@@ -69,6 +71,20 @@ export default {
     }
   },
   methods: {
+    move: function() {
+      // var head = $("h1"),
+      //     nav = $("#nav-demo"),
+      //     main = $(".jumbotron");
+
+      TweenLite.set('body', {visibility:"visible"})
+
+      //instantiate a TimelineLite
+      var tl = new TimelineLite();
+
+      tl.from('h1', 1.5, {left:500, opacity:0});
+      tl.from('#nav-demo', 1, {left:-200, opacity:0});
+
+    },
     moveUp: function() {
       TweenMax.to("#nav-test", 5, {y:0});
     },
@@ -79,8 +95,7 @@ export default {
       TweenMax.to("#nav-test", 5, {x:0});
     },
     moveRight: function() {
-      TweenMax.to("#nav-test", 5, {x:1000});
-    }
+      TweenMax.to("#nav-test", 5, {x:1000});          }
   },
   created: function () {
     // EventBus.$on('button-clicked', this.buttonClicked);
@@ -99,6 +114,7 @@ export default {
 h1, h2 {
   font-weight: normal;
   padding-left: 40px;
+  position: relative;
 }
 
 body {
@@ -115,8 +131,11 @@ li {
 }
 .d-btn {
   background: blue;
-  height: 50px;
-  width: 100%;
+  /* height: 100px;
+  width: 100%; */
   cursor: pointer;
+}
+#nav-demo {
+  position: relative;
 }
 </style>
