@@ -10,7 +10,7 @@ export default {
   name: 'Home',
   data () {
     return {
-      headerText: 'Home',
+      headerText: 'Home Page',
       pText: 'Here is a killer home page'
     }
   }
@@ -19,6 +19,8 @@ export default {
 
 <style>
 .jumbotron {
-  color: #3A52C9;
+  color: white;
+  background-color: 	#578BC3;
+  border: 2px solid white;
 }
 </style>

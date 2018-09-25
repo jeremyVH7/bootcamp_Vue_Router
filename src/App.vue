@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="app">
-      <div class='row'><h1>{{ title }}</h1></div>
+      <div class='row' id='title-h1-div'><h1 id='title-h1'>{{ title }}</h1></div>
       <NavBar>
         <ul>
           <li><router-link to="/"><img id="vue-logo" src="./assets/logo.png"></router-link></li>
@@ -46,9 +46,10 @@ import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Error404 from './components/Error404.vue'
 
-import jquery from "jquery/dist/jquery";
 import TweenMax from "gsap/TweenMax";
+import TweenLite from "gsap/TweenLite";
 import TimelineLite from "gsap/TimelineLite";
+import SplitText from "gsap/SplitText";
 
 export default {
   name: 'app',
@@ -61,7 +62,7 @@ export default {
   },
   data () {
     return {
-      title: 'Vue Router Demo',
+      title: 'Vue Router Single Page Application - with a bunch of Greensock stuff added in',
       buttonLinks: [
         ['/home', 'Home'],
         ['/about', 'About']
@@ -72,17 +73,47 @@ export default {
   },
   methods: {
     move: function() {
-      // var head = $("h1"),
-      //     nav = $("#nav-demo"),
-      //     main = $(".jumbotron");
 
       TweenLite.set('body', {visibility:"visible"})
 
       //instantiate a TimelineLite
       var tl = new TimelineLite();
 
-      tl.from('h1', 1.5, {left:500, opacity:0});
+      //use position parameter "+=0.5" to schedule next tween 0.5 seconds after previous tweens end
+      tl.from('.jumbotron', 0.5, {scale:.5, autoAlpha:0}, "+=0.5");
+
+      // 3d rotating
+      TweenLite.set('.jumbotron', {css:{transformPerspective:400, transformStyle:"preserve-3d"}});
+      tl.fromTo('.jumbotron', .05, {css:{autoAlpha:0}}, {css:{autoAlpha:1}, immediateRender:true})
+        .to('.jumbotron', 0.7, {css:{rotationY:-30, rotationX:20}});
+
+      tl.to('.jumbotron', 1, {css:{rotationY:180, z:-180}, ease:Power2.easeOut}, "+=0.2")
+        .to('.jumbotron', 1, {css:{rotationX:360, z:-10}})
+        .to('.jumbotron', 1, {css:{rotationY:360, z:0}, ease:Power2.easeOut}, "+=0.2");
+
+      // Nav bar
       tl.from('#nav-demo', 1, {left:-200, opacity:0});
+
+      // SplitText stuff
+      var splitTextTimeline = new TimelineLite();
+
+      var h1SplitText = new SplitText('h1', {type:"words"});
+
+      h1SplitText.split({type:"chars, words, lines"})
+      splitTextTimeline.staggerFrom(h1SplitText.chars, 0.2, {autoAlpha:0, scale:4, force3D:true}, 0.02, 4.0)
+        .staggerTo(h1SplitText.words, 0.1, {color:"#8FE402", scale:0.9}, 0.1, "words")
+        .staggerTo(h1SplitText.words, 0.2, {color:"white", scale:1}, 0.1, "words+=0.1")
+        .staggerTo(h1SplitText.lines, 0.5, {x:0, autoAlpha:1}, 0.2).eventCallback("onComplete", reset)
+
+      var pSplitText = new SplitText('p', {type:"words"});
+      pSplitText.split({type:"chars, words"})
+      tl.staggerFrom(pSplitText.chars, 0.4, {scale:7, autoAlpha:0,  rotationX:-180,  transformOrigin:"100% 50%", ease:Back.easeOut}, 0.02, 4.0);
+
+      /// reset html to original state
+      function reset(){
+        h1SplitText.revert();
+        pSplitText.revert();
+      }
 
     },
     moveUp: function() {
