@@ -9,28 +9,6 @@
         </ul>
       </NavBar>
       <router-view/>
-      <div class='col-sm-1 d-btn btn' id='d-u' v-on:click="move">Do Stuff</div>
-      <!-- <div id="nav-test"></div>
-      <div class='row'>
-        <div class="col-sm-10"></div>
-        <div class="col-sm-2">
-          <div class="row">
-            <div class='col-sm-4'></div>
-            <div class='col-sm-4 d-btn' id='d-u' v-on:click="moveUp"></div>
-            <div class='col-sm-4'></div>
-          </div>
-          <div class="row">
-            <div class='col-sm-4 d-btn' id='d-l' v-on:click="moveLeft"></div>
-            <div class='col-sm-4'></div>
-            <div class='col-sm-4 d-btn' id='d-r' v-on:click="moveRight"></div>
-          </div>
-          <div class="row">
-            <div class='col-sm-4'></div>
-            <div class='col-sm-4 d-btn' id='d-d' v-on:click="moveDown"></div>
-            <div class='col-sm-4'></div>
-          </div>
-        </div>
-      </div> -->
 
     </div>
   </div>
@@ -46,11 +24,6 @@ import Home from './components/Home.vue'
 import About from './components/About.vue'
 import Error404 from './components/Error404.vue'
 
-import TweenMax from "gsap/TweenMax";
-import TweenLite from "gsap/TweenLite";
-import TimelineLite from "gsap/TimelineLite";
-import SplitText from "gsap/SplitText";
-
 export default {
   name: 'app',
   components: {
@@ -62,7 +35,7 @@ export default {
   },
   data () {
     return {
-      title: 'Vue Router Single Page Application - with a bunch of Greensock stuff added in',
+      title: 'Vue Router Bootcamp',
       buttonLinks: [
         ['/home', 'Home'],
         ['/about', 'About']
@@ -72,61 +45,7 @@ export default {
     }
   },
   methods: {
-    move: function() {
 
-      TweenLite.set('body', {visibility:"visible"})
-
-      //instantiate a TimelineLite
-      var tl = new TimelineLite();
-
-      //use position parameter "+=0.5" to schedule next tween 0.5 seconds after previous tweens end
-      tl.from('.jumbotron', 0.5, {scale:.5, autoAlpha:0}, "+=0.5");
-
-      // 3d rotating
-      TweenLite.set('.jumbotron', {css:{transformPerspective:400, transformStyle:"preserve-3d"}});
-      tl.fromTo('.jumbotron', .05, {css:{autoAlpha:0}}, {css:{autoAlpha:1}, immediateRender:true})
-        .to('.jumbotron', 0.7, {css:{rotationY:-30, rotationX:20}});
-
-      tl.to('.jumbotron', 1, {css:{rotationY:180, z:-180}, ease:Power2.easeOut}, "+=0.2")
-        .to('.jumbotron', 1, {css:{rotationX:360, z:-10}})
-        .to('.jumbotron', 1, {css:{rotationY:360, z:0}, ease:Power2.easeOut}, "+=0.2");
-
-      // Nav bar
-      tl.from('#nav-demo', 1, {left:-200, opacity:0});
-
-      // SplitText stuff
-      var splitTextTimeline = new TimelineLite();
-
-      var h1SplitText = new SplitText('h1', {type:"words"});
-
-      h1SplitText.split({type:"chars, words, lines"})
-      splitTextTimeline.staggerFrom(h1SplitText.chars, 0.2, {autoAlpha:0, scale:4, force3D:true}, 0.02, 4.0)
-        .staggerTo(h1SplitText.words, 0.1, {color:"#8FE402", scale:0.9}, 0.1, "words")
-        .staggerTo(h1SplitText.words, 0.2, {color:"white", scale:1}, 0.1, "words+=0.1")
-        .staggerTo(h1SplitText.lines, 0.5, {x:0, autoAlpha:1}, 0.2).eventCallback("onComplete", reset)
-
-      var pSplitText = new SplitText('p', {type:"words"});
-      pSplitText.split({type:"chars, words"})
-      tl.staggerFrom(pSplitText.chars, 0.4, {scale:7, autoAlpha:0,  rotationX:-180,  transformOrigin:"100% 50%", ease:Back.easeOut}, 0.02, 4.0);
-
-      /// reset html to original state
-      function reset(){
-        h1SplitText.revert();
-        pSplitText.revert();
-      }
-
-    },
-    moveUp: function() {
-      TweenMax.to("#nav-test", 5, {y:0});
-    },
-    moveDown: function() {
-      TweenMax.to("#nav-test", 15, {y:1000});
-    },
-    moveLeft: function() {
-      TweenMax.to("#nav-test", 5, {x:0});
-    },
-    moveRight: function() {
-      TweenMax.to("#nav-test", 5, {x:1000});          }
   },
   created: function () {
     // EventBus.$on('button-clicked', this.buttonClicked);
